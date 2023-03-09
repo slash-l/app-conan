@@ -1,4 +1,4 @@
- node("conan_node") {
+ node("master") {
     stage("SCM"){
         // Clone the code from github:
         git url :'https://github.com/slash-l/app-conan.git' , branch : "main"
