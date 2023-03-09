@@ -24,7 +24,7 @@
     }
 
     stage("Conan build"){
-        dir("conan_time_install"){
+        dir("conan_timer_install"){
             // Add a new repository named 'conan-local' to the conan client.
             // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
             // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
