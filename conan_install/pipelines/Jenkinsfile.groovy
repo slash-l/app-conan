@@ -21,6 +21,8 @@
         // Create a conan client instance:
         conanClient = Artifactory.newConanClient()
 
+        conanClient.run(command: "config set general.revisions_enabled=True")
+
         // Add a new repository named 'conan-local' to the conan client.
         // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
         resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
@@ -29,8 +31,6 @@
 
     stage("Conan build"){
         dir("conan_install"){
-            conanClient.run(command: "config set general.revisions_enabled=True")
-
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             conanClient.run(command: "install . --build missing -r ${resolveRepo}", buildInfo: buildInfo)
         }
