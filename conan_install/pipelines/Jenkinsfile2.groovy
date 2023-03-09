@@ -1,4 +1,4 @@
- node("conan_node") {
+ node("master") {
         // Clone the code from github:
         git url :'git@github.com:slash-l/app-conan.git' , branch : "main"
 
