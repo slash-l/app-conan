@@ -37,14 +37,14 @@
     stage("PublishBuildInfo"){
         String deployRepo = conanClient.remote.add server: server, repo: "slash-conan-dev-local"
 
-        // Create an upload command. The 'serverName' string is used as a conan 'remote', so that
+        // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
         String command = "upload *  -r ${deployRepo} --confirm"
 
         // Run the upload command, with the same build-info instance as an argument:
         conanClient.run(command: command, buildInfo: buildInfo)
 
-         // Publish the build-info to Artifactory:
+        // Publish the build-info to Artifactory:
         server.publishBuildInfo buildInfo
     }
         

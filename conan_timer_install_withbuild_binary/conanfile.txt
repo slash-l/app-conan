@@ -1,0 +1,5 @@
+[requires]
+poco/1.10.0
+
+[generators]
+cmake
