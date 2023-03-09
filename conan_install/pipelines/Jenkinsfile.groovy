@@ -20,8 +20,6 @@
         conanClient = Artifactory.newConanClient()
 
         conanClient.run(command: "config set general.revisions_enabled=True")
-
-        
         
     }
 
