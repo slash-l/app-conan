@@ -16,8 +16,8 @@
         buildInfo = Artifactory.newBuildInfo()
 
         // Create a conan client instance:
-        conanClient = Artifactory.newConanClient()
-        // conanClient = Artifactory.newConanClient userHome: "/Users/jingyil"
+        // conanClient = Artifactory.newConanClient()
+        conanClient = Artifactory.newConanClient userHome: "/Users/jingyil"
 
         conanClient.run(command: "config set general.revisions_enabled=True")
         
