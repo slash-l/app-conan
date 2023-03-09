@@ -5,7 +5,7 @@
  node("master") {
     stage("SCM"){
         // Clone the code from github:
-        git url :'https://github.com/slash-l/app-conan.git' , branch : "main"
+        git url :'git@github.com:slash-l/app-conan.git' , branch : "main"
     }
 
     stage("Artifactory Configure"){
