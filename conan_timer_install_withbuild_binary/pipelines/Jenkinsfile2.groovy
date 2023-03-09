@@ -10,7 +10,8 @@
         // buildInfo.project = 'slash-jenkins-conan-install'
 
         // Create a conan client instance:
-        def conanClient = Artifactory.newConanClient()
+        // def conanClient = Artifactory.newConanClient()
+        def conanClient = Artifactory.newConanClient userHome: "/Users/jingyil/.conan"
 
         // Add a new repository named 'conan-local' to the conan client.
         // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
