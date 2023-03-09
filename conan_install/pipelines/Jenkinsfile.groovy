@@ -26,11 +26,8 @@
 
     stage("Conan build"){
         dir("conan_install"){
-            sh "mkdir -p build"
-            sh "cd build"
-
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            conanClient.run(command: "install .. --build missing", buildInfo: buildInfo)
+            conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
         }
     }
 
