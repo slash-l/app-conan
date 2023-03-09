@@ -27,10 +27,10 @@
         dir("conan_install"){
             // Add a new repository named 'conan-local' to the conan client.
             // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
-            String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
+            // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
 
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            conanClient.run(command: "install . --build missing -r ${resolveRepo}", buildInfo: buildInfo)
+            conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
         }
     }
 
