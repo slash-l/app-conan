@@ -4,7 +4,7 @@
         git url :'https://github.com/slash-l/app-conan.git' , branch : "main"
     }
 
-    stage(Artifactory Configure){
+    stage("Artifactory Configure"){
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
         def server = Artifactory.server 'JFrogChina-Server'
 
@@ -20,7 +20,7 @@
         String serverName = conanClient.remote.add server: server, repo: "slash-conan-dev-local"
     }
 
-    stage(Conan build){
+    stage("Conan build"){
         dir("conan_install"){
         fileOperations([folderCreateOperation('build')])
 
@@ -29,7 +29,7 @@
         }
     }
 
-    stage(PublishBuildInfo){
+    stage("PublishBuildInfo"){
         // Create an upload command. The 'serverName' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
         String command = "upload *  -r ${serverName} --confirm"
