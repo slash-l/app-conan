@@ -1,8 +1,6 @@
  def server
  def buildInfo
  def conanClient
- String resolveRepo
- String deployRepo
  
  node("master") {
     stage("SCM"){
