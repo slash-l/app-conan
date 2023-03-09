@@ -23,20 +23,24 @@
 
         conanClient.run(command: "config set general.revisions_enabled=True")
 
-        // Add a new repository named 'conan-local' to the conan client.
-        // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
-        resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
-        deployRepo = conanClient.remote.add server: server, repo: "slash-conan-dev-local"
+        
+        
     }
 
     stage("Conan build"){
         dir("conan_install"){
+            // Add a new repository named 'conan-local' to the conan client.
+            // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
+            String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
+
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             conanClient.run(command: "install . --build missing -r ${resolveRepo}", buildInfo: buildInfo)
         }
     }
 
     stage("PublishBuildInfo"){
+        String deployRepo = conanClient.remote.add server: server, repo: "slash-conan-dev-local"
+
         // Create an upload command. The 'serverName' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
         String command = "upload *  -r ${deployRepo} --confirm"
