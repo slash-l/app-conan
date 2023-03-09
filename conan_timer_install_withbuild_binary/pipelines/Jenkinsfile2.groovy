@@ -7,7 +7,7 @@
 
         // Create a local build-info instance:
         def buildInfo = Artifactory.newBuildInfo()
-        buildInfo.project = 'slash-jenkins-conan-install'
+        // buildInfo.project = 'slash-jenkins-conan-install'
 
         // Create a conan client instance:
         def conanClient = Artifactory.newConanClient()
@@ -21,10 +21,10 @@
 
         // Create an upload command. The 'serverName' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
-        String command = "upload *  -r ${serverName} --confirm"
+        // String command = "upload *  -r ${serverName} --confirm"
 
         // Run the upload command, with the same build-info instance as an argument:
-        conanClient.run(command: command, buildInfo: buildInfo)
+        // conanClient.run(command: command, buildInfo: buildInfo)
 
          // Publish the build-info to Artifactory:
         server.publishBuildInfo buildInfo
