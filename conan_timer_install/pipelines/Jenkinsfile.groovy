@@ -35,7 +35,7 @@
     }
 
     stage("PublishBuildInfo"){
-        String deployRepo = conanClient.remote.add server: server, repo: "slash-conan-dev-local"
+        String deployRepo = conanClient.remote.add server: server, repo: "slash-conan-dev-local", force: true
 
         // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
