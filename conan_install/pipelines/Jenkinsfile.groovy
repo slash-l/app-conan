@@ -29,6 +29,8 @@
 
     stage("Conan build"){
         dir("conan_install"){
+            sh "export CONAN_REVISIONS_ENABLED=1"
+            
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             conanClient.run(command: "install . --build missing -r ${resolveRepo}", buildInfo: buildInfo)
         }
