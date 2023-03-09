@@ -1,3 +1,7 @@
+ def server
+ def buildInfo
+ def conanClient
+ 
  node("master") {
     stage("SCM"){
         // Clone the code from github:
@@ -6,14 +10,14 @@
 
     stage("Artifactory Configure"){
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-        def server = Artifactory.server 'JFrogChina-Server'
+        server = Artifactory.server 'JFrogChina-Server'
 
         // Create a local build-info instance:
-        def buildInfo = Artifactory.newBuildInfo()
+        buildInfo = Artifactory.newBuildInfo()
         buildInfo.project = 'slash-jenkins-conan-install'
 
         // Create a conan client instance:
-        def conanClient = Artifactory.newConanClient()
+        conanClient = Artifactory.newConanClient()
 
         // Add a new repository named 'conan-local' to the conan client.
         // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
