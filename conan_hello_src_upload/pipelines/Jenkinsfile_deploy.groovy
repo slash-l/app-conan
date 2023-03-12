@@ -20,7 +20,7 @@ node("master") {
         // conanClient = Artifactory.newConanClient()
         conanClient = Artifactory.newConanClient userHome: "/Users/jingyil"
 
-        conanClient.run(command: "config set general.revisions_enabled=True")
+        // conanClient.run(command: "config set general.revisions_enabled=True")
         
     }
 
