@@ -31,8 +31,8 @@ node("master") {
             // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
 
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            conanClient.run(command: "install . --build missing")
-            conanClient.run(command: "create . user/testing")
+            conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
+            conanClient.run(command: "create . user/testing", buildInfo: buildInfo)
         }
     }
 
@@ -45,10 +45,10 @@ node("master") {
         String command = "upload hello/0.1@user/testing -r ${deployRepo} --all --confirm"
 
         // Run the upload command, with the same build-info instance as an argument:
-        conanClient.run(command: command)
+        conanClient.run(command: command, buildInfo: buildInfo)
 
         // Publish the build-info to Artifactory:
-        // server.publishBuildInfo buildInfo
+        server.publishBuildInfo buildInfo
     }
         
 }
