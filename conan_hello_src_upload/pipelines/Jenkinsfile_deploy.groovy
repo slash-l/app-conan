@@ -14,7 +14,7 @@ node("master") {
         server = Artifactory.server 'JFrogChina-Server'
 
         // Create a local build-info instance:
-        // buildInfo = Artifactory.newBuildInfo()
+        buildInfo = Artifactory.newBuildInfo()
 
         // Create a conan client instance:
         conanClient = Artifactory.newConanClient()
@@ -41,8 +41,8 @@ node("master") {
 
         // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
-        // String command = "upload hello/0.2.${BUILD_NUMBER}@user/testing -r ${deployRepo} --all --confirm"
-        String command = "upload hello/0.2@user/testing -r ${deployRepo} --all --confirm"
+        // String command = "upload hello/0.1.${BUILD_NUMBER}@user/testing -r ${deployRepo} --all --confirm"
+        String command = "upload hello/0.1@user/testing -r ${deployRepo} --all --confirm"
 
         // Run the upload command, with the same build-info instance as an argument:
         conanClient.run(command: command)

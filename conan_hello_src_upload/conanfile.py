@@ -3,7 +3,7 @@ from conans import ConanFile, CMake
 
 class HelloConan(ConanFile):
     name = "hello"
-    version = "0.2"
+    version = "0.1"
     # version = "0.2.BUILD_NUMBER"
     license = "<Put the package license here>"
     author = "<Put your name here> <And your email here>"
