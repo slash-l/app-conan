@@ -6,7 +6,7 @@ node("master") {
     stage("SCM"){
         // Clone the code from github:
         git url :'git@github.com:slash-l/app-conan.git' , branch : "main"
-        sh "sed -i \"s#BUILD_NUMBER#${BUILD_NUMBER}#g\" ./conan_hello_src_upload/conanfile.py"
+        // sh "sed -i \"s#BUILD_NUMBER#${BUILD_NUMBER}#g\" ./conan_hello_src_upload/conanfile.py"
     }
 
     stage("Artifactory Configure"){
@@ -41,7 +41,8 @@ node("master") {
 
         // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
-        String command = "upload hello/0.2.${BUILD_NUMBER}@user/testing -r ${deployRepo} --all --confirm"
+        // String command = "upload hello/0.2.${BUILD_NUMBER}@user/testing -r ${deployRepo} --all --confirm"
+        String command = "upload hello/0.2@user/testing -r ${deployRepo} --all --confirm"
 
         // Run the upload command, with the same build-info instance as an argument:
         conanClient.run(command: command, buildInfo: buildInfo)
