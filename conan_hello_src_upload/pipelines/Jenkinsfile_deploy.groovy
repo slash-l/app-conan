@@ -14,7 +14,7 @@ node("master") {
         server = Artifactory.server 'JFrogChina-Server'
 
         // Create a local build-info instance:
-        buildInfo = Artifactory.newBuildInfo()
+        // buildInfo = Artifactory.newBuildInfo()
 
         // Create a conan client instance:
         // conanClient = Artifactory.newConanClient()
@@ -48,7 +48,7 @@ node("master") {
         conanClient.run(command: command)
 
         // Publish the build-info to Artifactory:
-        server.publishBuildInfo buildInfo
+        // server.publishBuildInfo buildInfo
     }
         
 }
