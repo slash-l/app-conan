@@ -32,7 +32,7 @@ node("master") {
 
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             conanClient.run(command: "install . --build missing")
-            conanClient.run(command: "conan create . user/testing")
+            conanClient.run(command: "create . user/testing")
         }
     }
 
