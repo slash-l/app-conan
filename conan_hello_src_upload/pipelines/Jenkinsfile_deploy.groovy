@@ -6,7 +6,7 @@ node("master") {
     stage("SCM"){
         // Clone the code from github:
         git url :'git@github.com:slash-l/app-conan.git' , branch : "main"
-        sh "sed -i \"s#BUILD_NUMBER#${BUILD_NUMBER}#g\" conan_hello_src_upload/conanfile.py"
+        sh "sed -i \"\" \"s#BUILD_NUMBER#${BUILD_NUMBER}#g\" ./conan_hello_src_upload/conanfile.py"
     }
 
     stage("Artifactory Configure"){
