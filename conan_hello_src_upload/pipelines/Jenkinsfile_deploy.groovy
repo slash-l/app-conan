@@ -50,5 +50,25 @@ node("master") {
         // Publish the build-info to Artifactory:
         server.publishBuildInfo buildInfo
     }
+
+    stage("Promotion"){
+        promotionConfig = [
+                //Mandatory parameters
+                'buildName'          : buildInfo.name,
+                'buildNumber'        : buildInfo.number,
+                'targetRepo'         : 'slash-conan-test-local',
+
+                //Optional parameters
+                'comment'            : 'this is the promotion comment',
+                'sourceRepo'         : 'slash-conan-dev-local',
+                'status'             : 'Released',
+                'includeDependencies': true,
+                'failFast'           : true,
+                'copy'               : true
+        ]
+
+        // Promote build
+        server.promote promotionConfig
+    }
         
 }
