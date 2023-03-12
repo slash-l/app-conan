@@ -1,8 +1,8 @@
- def server
- def buildInfo
- def conanClient
- 
- node("master") {
+node("master") {
+    def server
+    def buildInfo
+    def conanClient
+
     stage("SCM"){
         // Clone the code from github:
         git url :'git@github.com:slash-l/app-conan.git' , branch : "main"
