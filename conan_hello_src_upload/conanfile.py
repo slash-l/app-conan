@@ -16,8 +16,8 @@ class HelloConan(ConanFile):
     generators = "cmake"
     exports_sources = "src/*"
 
-    # def requirements(self):
-    #     self.requires("poco/1.10.0")    # -> depend on boost 1.74.0
+    def requirements(self):
+        self.requires("poco/1.10.0")    # -> depend on boost 1.74.0
 
     def config_options(self):
         if self.settings.os == "Windows":
