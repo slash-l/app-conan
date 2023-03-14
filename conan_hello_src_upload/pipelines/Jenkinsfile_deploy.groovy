@@ -17,8 +17,8 @@ node("master") {
         buildInfo = Artifactory.newBuildInfo()
 
         // Create a conan client instance:
-        // conanClient = Artifactory.newConanClient()
-        conanClient = Artifactory.newConanClient userHome: "/Users/jingyil"
+        conanClient = Artifactory.newConanClient()
+        // conanClient = Artifactory.newConanClient userHome: "/Users/jingyil"
 
         conanClient.run(command: "config set general.revisions_enabled=True")
         
@@ -63,24 +63,24 @@ node("master") {
 //        echo "scanResult:" + scanResult;
     }
 
-    // stage("Promotion"){
-    //     promotionConfig = [
-    //         //Mandatory parameters
-    //         'buildName'          : buildInfo.name,
-    //         'buildNumber'        : buildInfo.number,
-    //         'targetRepo'         : 'slash-conan-test-local',
+    stage("Promotion"){
+        promotionConfig = [
+            //Mandatory parameters
+            'buildName'          : buildInfo.name,
+            'buildNumber'        : buildInfo.number,
+            'targetRepo'         : 'slash-conan-test-local',
 
-    //         //Optional parameters
-    //         'comment'            : 'this is the promotion comment',
-    //         'sourceRepo'         : 'slash-conan-dev-local',
-    //         'status'             : 'Released',
-    //         'includeDependencies': true,
-    //         'failFast'           : true,
-    //         'copy'               : true
-    //     ]
+            //Optional parameters
+            'comment'            : 'this is the promotion comment',
+            'sourceRepo'         : 'slash-conan-dev-local',
+            'status'             : 'Released',
+            'includeDependencies': true,
+            'failFast'           : true,
+            'copy'               : true
+        ]
 
-    //     // Promote build
-    //     server.promote promotionConfig
-    // }
+        // Promote build
+        server.promote promotionConfig
+    }
         
 }
