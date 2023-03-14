@@ -74,10 +74,10 @@ node("master") {
             //Optional parameters
             'comment'            : 'this is the promotion comment',
             'sourceRepo'         : 'slash-conan-dev-local',
-            // 'status'             : 'Released',
+            'status'             : 'Released',
             'includeDependencies': true,
             'failFast'           : true,
-            'copy'               : false
+            'copy'               : true
         ]
 
         // Promote build
