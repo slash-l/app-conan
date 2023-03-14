@@ -33,7 +33,7 @@ node("master") {
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             // sh "export CONAN_REVISIONS_ENABLED=1"
             String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote", force: true
-            conanClient.run(command: "user -p cmVmdGtuOjAxOjE3MTAzMzEwNDM6OUdSZGI0NmZMWTVKU0R0UWpDYmRvSzBxNzZE -r slash-conan-virtual slash")
+            conanClient.run(command: "user -p cmVmdGtuOjAxOjE3MTAzMzEwNDM6OUdSZGI0NmZMWTVKU0R0UWpDYmRvSzBxNzZE -r slash-conan-remote slash")
             conanClient.run(command: "install . --build missing -r ${resolveRepo}", buildInfo: buildInfo)
             conanClient.run(command: "create . user/testing", buildInfo: buildInfo)
         }
