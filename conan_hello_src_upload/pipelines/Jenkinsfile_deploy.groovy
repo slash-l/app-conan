@@ -67,8 +67,8 @@ node("master") {
     stage("Promotion"){
         promotionConfig = [
             //Mandatory parameters
-            'buildName'          : "${BUILD_NAME}",
-            'buildNumber'        : "${BUILD_NUMBER}",
+            'buildName'          : buildInfo.name,
+            'buildNumber'        : buildInfo.number,
             'targetRepo'         : 'slash-conan-test-local',
 
             //Optional parameters
