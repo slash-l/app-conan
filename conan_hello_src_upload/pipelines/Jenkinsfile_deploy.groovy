@@ -31,7 +31,7 @@ node("master") {
             // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
 
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
+            conanClient.run(command: "install . --build missing -r slash-conan-virtual", buildInfo: buildInfo)
             conanClient.run(command: "create . user/testing", buildInfo: buildInfo)
         }
     }
