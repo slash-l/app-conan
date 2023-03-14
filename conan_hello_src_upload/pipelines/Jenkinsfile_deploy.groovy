@@ -54,6 +54,16 @@ node("master") {
         server.publishBuildInfo buildInfo
     }
 
+    stage('xray scan'){
+        def scanConfig = [
+                'buildName': buildInfo.name, //构建名称
+                'buildNumber': buildInfo.number, //构建号
+                'failBuild': true
+        ]
+        def scanResult = server.xrayScan scanConfig
+//        echo "scanResult:" + scanResult;
+    }
+
     stage("Promotion"){
         promotionConfig = [
             //Mandatory parameters
