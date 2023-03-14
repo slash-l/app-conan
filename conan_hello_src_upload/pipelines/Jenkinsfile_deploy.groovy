@@ -32,7 +32,7 @@ node("master") {
 
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             conanClient.run(command: "export CONAN_REVISIONS_ENABLED=1")
-            conanClient.remote.add server: server, repo: "slash-conan-virtual"
+            conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
             conanClient.run(command: "conan user -p cmVmdGtuOjAxOjE3MTAyOTM0MjM6QnJxNGliejNwNkRURWFHS3NkY1hpbFR4aEFW -r slash-conan-virtual slash")
             conanClient.run(command: "install . --build missing -r slash-conan-virtual", buildInfo: buildInfo)
             conanClient.run(command: "create . user/testing", buildInfo: buildInfo)
@@ -40,7 +40,7 @@ node("master") {
     }
 
     stage("PublishBuildInfo"){
-        String deployRepo = conanClient.remote.add server: server, repo: "slash-conan-dev-local", force: true
+        String deployRepo = conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
 
         // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
