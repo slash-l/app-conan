@@ -33,7 +33,6 @@ node("master") {
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             // sh "export CONAN_REVISIONS_ENABLED=1"
             // conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
-            // conanClient.run(command: "conan user -p cmVmdGtuOjAxOjE3MTAyOTM0MjM6QnJxNGliejNwNkRURWFHS3NkY1hpbFR4aEFW -r slash-conan-virtual slash")
             conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
             conanClient.run(command: "create . user/testing", buildInfo: buildInfo)
         }
@@ -64,24 +63,24 @@ node("master") {
 //        echo "scanResult:" + scanResult;
     }
 
-    stage("Promotion"){
-        promotionConfig = [
-            //Mandatory parameters
-            'buildName'          : buildInfo.name,
-            'buildNumber'        : buildInfo.number,
-            'targetRepo'         : 'slash-conan-test-local',
+    // stage("Promotion"){
+    //     promotionConfig = [
+    //         //Mandatory parameters
+    //         'buildName'          : buildInfo.name,
+    //         'buildNumber'        : buildInfo.number,
+    //         'targetRepo'         : 'slash-conan-test-local',
 
-            //Optional parameters
-            'comment'            : 'this is the promotion comment',
-            'sourceRepo'         : 'slash-conan-dev-local',
-            'status'             : 'Released',
-            'includeDependencies': true,
-            'failFast'           : true,
-            'copy'               : true
-        ]
+    //         //Optional parameters
+    //         'comment'            : 'this is the promotion comment',
+    //         'sourceRepo'         : 'slash-conan-dev-local',
+    //         'status'             : 'Released',
+    //         'includeDependencies': true,
+    //         'failFast'           : true,
+    //         'copy'               : true
+    //     ]
 
-        // Promote build
-        server.promote promotionConfig
-    }
+    //     // Promote build
+    //     server.promote promotionConfig
+    // }
         
 }
