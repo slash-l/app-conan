@@ -32,7 +32,8 @@ node("master") {
             // conanClient.run(command: "user -p cmVmdGtuOjAxOjE3MTAzMzEwNDM6OUdSZGI0NmZMWTVKU0R0UWpDYmRvSzBxNzZE -r ${resolveRepo} slash")
 
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
+            String command = "install . -r ${resolveRepo} --build missing"
+            conanClient.run(command: command, buildInfo: buildInfo)
             conanClient.run(command: "create . user/testing", buildInfo: buildInfo)
         }
     }
