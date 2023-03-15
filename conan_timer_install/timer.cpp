@@ -3,7 +3,7 @@
 #include "Poco/Stopwatch.h"
 
 #include <iostream>
-#include <hello.h>
+// #include <hello.h>
 
 using Poco::Timer;
 using Poco::TimerCallback;
@@ -36,7 +36,7 @@ int main(int argc, char** argv)
     Thread::sleep(2000);
     timer.stop();
 
-    hello();
+    // hello();
 
     return 0;
 }
