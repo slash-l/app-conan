@@ -53,6 +53,38 @@ node("master") {
         server.publishBuildInfo buildInfo
     }
 
-    
+    stage('xray scan'){
+       def scanConfig = [
+               'buildName': buildInfo.name, //构建名称
+               'buildNumber': buildInfo.number, //构建号
+               'failBuild': true
+       ]
+       def scanResult = server.xrayScan scanConfig
+//        echo "scanResult:" + scanResult;
+   }
+
+
+   stage("Promotion"){
+       promotionConfig = [
+           //Mandatory parameters
+           'buildName'          : buildInfo.name,
+           'buildNumber'        : buildInfo.number,
+           'targetRepo'         : 'slash-conan-test-local',
+
+
+           //Optional parameters
+           'comment'            : 'this is the promotion comment',
+           'sourceRepo'         : 'slash-conan-dev-local',
+           'status'             : 'Released',
+           'includeDependencies': true,
+           'failFast'           : true,
+           'copy'               : true
+       ]
+
+
+       // Promote build
+       server.promote promotionConfig
+   }
+
         
 }
