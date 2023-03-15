@@ -38,7 +38,7 @@ node("master") {
         }
     }
 
-    stage("Publish BuildInfo"){
+    stage("Publish Dev Local Repo"){
         String deployRepo = conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
 
         // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
