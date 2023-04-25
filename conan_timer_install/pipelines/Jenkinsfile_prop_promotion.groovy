@@ -37,7 +37,7 @@ node("master") {
         def uploadSpec = """{
             "files": [
                 {
-                    "pattern": "bin/timer",
+                    "pattern": "conan_timer_install/bin/timer",
                     "target": "slash-generic-local/conan_timer_install/v1.0.0"
                 }
             ]
