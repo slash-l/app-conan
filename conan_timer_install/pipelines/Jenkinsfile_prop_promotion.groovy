@@ -32,6 +32,8 @@ node("master") {
             sh "cd build"
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             // conanClient.run(command: "install .. --build missing", buildInfo: buildInfo)
+            def result = sh returnStdout: true ,script: "pwd"
+            echo result
 
             sh "conan install .. --build missing"
             sh "cmake .."
