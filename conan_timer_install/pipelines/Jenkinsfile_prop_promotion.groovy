@@ -35,7 +35,7 @@ node("master") {
 
     stage("Upload artifacts"){
         dir("conan_timer_install"){
-            echo "当前目录文件列表：" + $(ls)
+            sh "echo $(ls)"
             def uploadSpec = """{
                 "files": [
                     {
