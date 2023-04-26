@@ -35,6 +35,9 @@ node("master") {
             def result = sh returnStdout: true ,script: "pwd"
             echo result
 
+            def result2 = sh returnStdout: true ,script: "ls"
+            echo result2
+
             sh "conan install .. --build missing"
             sh "cmake .."
             sh "cmake --build ."
