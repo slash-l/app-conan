@@ -63,7 +63,7 @@ node("master") {
                 }
             ]
         }"""
-        server.setProps spec: setPropsSpec, props: “SITTest=Passed”
+        server.setProps spec: setPropsSpec, props: "SITTest=Passed"
     }
 
 }
