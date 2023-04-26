@@ -27,14 +27,19 @@ node("master") {
             // Add a new repository named 'conan-local' to the conan client.
             // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
             // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
-
+            
+            sh "mkdir build"
+            sh "cd build"
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            conanClient.run(command: "install . --build missing", buildInfo: buildInfo)
+            conanClient.run(command: "install .. --build missing", buildInfo: buildInfo)
+
+            sh "cmake .."
+            sh "cmake --build ."
         }
     }
 
     stage("Upload artifacts"){
-        dir("conan_timer_install"){
+        dir("conan_timer_install/build"){
             def result = sh returnStdout: true ,script: "ls"
             echo result
             
