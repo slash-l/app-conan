@@ -24,26 +24,15 @@ node("master") {
 
     stage("Conan build"){
         dir("conan_timer_install"){
-            // Add a new repository named 'conan-local' to the conan client.
-            // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
-            // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
-            
             sh "mkdir -p build"
             sh "cd build"
-            // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            // conanClient.run(command: "install .. --build missing", buildInfo: buildInfo)
-            def result = sh returnStdout: true ,script: "pwd"
-            echo result
-
-            def result2 = sh returnStdout: true ,script: "ls"
-            echo result2
 
             dir("build"){
-                def result3 = sh returnStdout: true ,script: "pwd"
-                echo result3
-                def result4 = sh returnStdout: true ,script: "ls"
-                echo result4
+                def ls = sh returnStdout: true ,script: "ls"
+                echo ls
 
+                // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
+                // conanClient.run(command: "install .. --build missing", buildInfo: buildInfo)
                 sh "conan install .. --build missing"
                 sh "cmake .."
                 sh "cmake --build ."    
@@ -54,9 +43,6 @@ node("master") {
 
     stage("Upload artifacts"){
         dir("conan_timer_install/build"){
-            def result = sh returnStdout: true ,script: "ls"
-            echo result
-            
             def uploadSpec = """{
                 "files": [
                     {
@@ -69,15 +55,15 @@ node("master") {
         }
     }
 
-    // stage("Set Props"){
-    //     def setPropsSpec = """{
-    //         "files": [
-    //             {
-    //                 "pattern": "slash-generic-local/conan_timer_install/v1.0.0/timer"
-    //             }
-    //         ]
-    //     }"""
-    //     server.setProps spec: setPropsSpec, props: “SITTest=true”
-    // }
+    stage("Set Props"){
+        def setPropsSpec = """{
+            "files": [
+                {
+                    "pattern": "slash-generic-local/conan_timer_install/v1.0.0/timer"
+                }
+            ]
+        }"""
+        server.setProps spec: setPropsSpec, props: “SITTest=true”
+    }
 
 }
