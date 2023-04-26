@@ -61,7 +61,7 @@ node("master") {
                 "files": [
                     {
                         "pattern": "bin/timer",
-                        "target": "slash-generic-local/conan_timer_install/v1.0.0"
+                        "target": "slash-generic-local/conan_timer_install/v1.0.0/"
                     }
                 ]
             }"""
