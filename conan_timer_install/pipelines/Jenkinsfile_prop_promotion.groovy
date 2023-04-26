@@ -48,15 +48,15 @@ node("master") {
         }
     }
 
-    stage("Set Props"){
-        def setPropsSpec = """{
-            "files": [
-                {
-                    "pattern": "slash-generic-local/conan_timer_install/v1.0.0/timer"
-                }
-            ]
-        }"""
-        server.setProps spec: setPropsSpec, props: “SITTest=true”
-    }
+    // stage("Set Props"){
+    //     def setPropsSpec = """{
+    //         "files": [
+    //             {
+    //                 "pattern": "slash-generic-local/conan_timer_install/v1.0.0/timer"
+    //             }
+    //         ]
+    //     }"""
+    //     server.setProps spec: setPropsSpec, props: “SITTest=true”
+    // }
 
 }
