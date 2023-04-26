@@ -34,15 +34,18 @@ node("master") {
     }
 
     stage("Upload artifacts"){
-        def uploadSpec = """{
-            "files": [
-                {
-                    "pattern": "conan_timer_install/bin/timer",
-                    "target": "slash-generic-local/conan_timer_install/v1.0.0"
-                }
-            ]
-        }"""
-        server.upload spec: uploadSpec 
+        dir("conan_timer_install"){
+            echo "当前目录文件列表：" + $(ls)
+            def uploadSpec = """{
+                "files": [
+                    {
+                        "pattern": "bin/timer",
+                        "target": "slash-generic-local/conan_timer_install/v1.0.0"
+                    }
+                ]
+            }"""
+            server.upload spec: uploadSpec 
+        }
     }
 
     stage("Set Props"){
@@ -55,8 +58,5 @@ node("master") {
         }"""
         server.setProps spec: setPropsSpec, props: “SITTest=true”
     }
-
-    
-
 
 }
