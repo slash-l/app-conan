@@ -28,7 +28,7 @@ node("master") {
             // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
             // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-remote"
             
-            sh "mkdir build"
+            sh "mkdir -p build"
             sh "cd build"
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             // conanClient.run(command: "install .. --build missing", buildInfo: buildInfo)
