@@ -36,7 +36,7 @@ node("master") {
     stage("Upload artifacts"){
         dir("conan_timer_install"){
             def result = sh returnStdout: true ,script: "ls"
-            echo ${result}
+            echo result
             
             def uploadSpec = """{
                 "files": [
