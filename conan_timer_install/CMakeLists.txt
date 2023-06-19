@@ -8,3 +8,4 @@ conan_basic_setup()
 
 add_executable(timer timer.cpp)
 target_link_libraries(timer ${CONAN_LIBS})
+
