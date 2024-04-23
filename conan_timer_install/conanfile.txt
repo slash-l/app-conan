@@ -1,6 +1,6 @@
 [requires]
 poco/1.10.0
-hello_a/0.5@slash/testing
+hello_a/0.1@slash/testing
 
 [generators]
 cmake
