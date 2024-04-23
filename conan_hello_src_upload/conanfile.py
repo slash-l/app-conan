@@ -34,7 +34,7 @@ class HelloConan(ConanFile):
         cmake.build()
 
         # Explicit way:
-        # 通过 self.run 可以在 conan repice 的任何地方使用、通过本地shell调用任何外部工具命令
+        # 通过 self.run 可以在 conan recipe 的任何地方使用、通过本地shell调用任何外部工具命令
         # self.run('cmake %s/hello %s'
         #          % (self.source_folder, cmake.command_line))
         # self.run("cmake --build . %s" % cmake.build_config)
