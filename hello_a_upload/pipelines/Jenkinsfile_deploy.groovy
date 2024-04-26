@@ -35,7 +35,7 @@ node("master") {
             // String command = "install . -r ${resolveRepo} --build missing"
             // conanClient.run(command: command, buildInfo: buildInfo)
             
-            String command = "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing"
+            String command = "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing --force"
             def buildInfo1 = conanClient.run command: command
             conanClient.run command: command, buildInfo: buildInfo1
             // conanClient.run(command: "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing", buildInfo: buildInfo)
