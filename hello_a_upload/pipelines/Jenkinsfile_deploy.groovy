@@ -34,7 +34,7 @@ node("master") {
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             // String command = "install . -r ${resolveRepo} --build missing"
             // conanClient.run(command: command, buildInfo: buildInfo)
-            conanClient.run(command: "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing")
+            conanClient.run(command: "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing", buildInfo: buildInfo)
         }
     }
 
