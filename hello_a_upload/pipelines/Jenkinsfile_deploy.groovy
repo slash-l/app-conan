@@ -34,7 +34,7 @@ node("master") {
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
             // String command = "install . -r ${resolveRepo} --build missing"
             // conanClient.run(command: command, buildInfo: buildInfo)
-            conanClient.run(command: "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing", buildInfo: buildInfo)
+            conanClient.run(command: "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing")
         }
     }
 
@@ -43,7 +43,7 @@ node("master") {
 
         // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
-        String command = "upload hello/0.1.${BUILD_NUMBER}@slash/testing -r ${deployRepo} --all --confirm"
+        String command = "upload hello_a/0.1.${BUILD_NUMBER}@slash/testing -r ${deployRepo} --all --confirm"
         // String command = "upload hello_a/0.1@user/testing -r ${deployRepo} --all --confirm"
 
         // Run the upload command, with the same build-info instance as an argument:
