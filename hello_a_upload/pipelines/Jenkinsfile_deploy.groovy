@@ -28,7 +28,7 @@ node("master") {
         dir("hello_a_upload"){
             // Add a new repository named 'conan-local' to the conan client.
             // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
-            String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
+            // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
             // conanClient.run(command: "user -p cmVmdGtuOjAxOjE3MTAzMzEwNDM6OUdSZGI0NmZMWTVKU0R0UWpDYmRvSzBxNzZE -r ${resolveRepo} slash")
 
             // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
