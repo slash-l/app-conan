@@ -6,7 +6,7 @@ node("master") {
     stage("SCM"){
         // Clone the code from github:
         git url :'git@github.com:slash-l/app-conan.git' , branch : "main"
-        sh "sed -i \"\" \"s#BUILD_NUMBER#${BUILD_NUMBER}#g\" ./hello_src_upload/conanfile.py"
+        sh "sed -i \"\" \"s#BUILD_NUMBER#${BUILD_NUMBER}#g\" ./hello_a_upload/conanfile.py"
     }
 
     stage("Artifactory Configure"){
@@ -25,7 +25,7 @@ node("master") {
     }
 
     stage("Conan package"){
-        dir("conan_hello_src_upload"){
+        dir("hello_a_upload"){
             // Add a new repository named 'conan-local' to the conan client.
             // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
             String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
