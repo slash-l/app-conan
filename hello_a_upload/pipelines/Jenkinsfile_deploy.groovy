@@ -18,7 +18,6 @@ node("master") {
 
         // Create a conan client instance:
         conanClient = Artifactory.newConanClient()
-        // conanClient = Artifactory.newConanClient userHome: "/Users/jingyil"
 
         conanClient.run(command: "config set general.revisions_enabled=True")
         
@@ -26,19 +25,9 @@ node("master") {
 
     stage("Conan package"){
         dir("hello_a_upload"){
-            // Add a new repository named 'conan-local' to the conan client.
-            // The 'remote.add' method returns a 'serverName' string, which is used later in the script:
-            // String resolveRepo = conanClient.remote.add server: server, repo: "slash-conan-virtual", force: true
-            // conanClient.run(command: "user -p cmVmdGtuOjAxOjE3MTAzMzEwNDM6OUdSZGI0NmZMWTVKU0R0UWpDYmRvSzBxNzZE -r ${resolveRepo} slash")
-
-            // Run a conan build. The 'buildInfo' instance is passed as an argument to the 'run' method:
-            // String command = "install . -r ${resolveRepo} --build missing"
-            // conanClient.run(command: command, buildInfo: buildInfo)
-            
             String command = "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing --force"
             def buildInfo1 = conanClient.run command: command
             conanClient.run command: command, buildInfo: buildInfo1
-            // conanClient.run(command: "export-pkg . hello_a/0.1.${BUILD_NUMBER}@slash/testing", buildInfo: buildInfo)
         }
     }
 
@@ -48,7 +37,6 @@ node("master") {
         // Create an upload command. The 'deployRepo' string is used as a conan 'remote', so that
         // the artifacts are uploaded into it:
         String command = "upload hello_a/0.1.${BUILD_NUMBER}@slash/testing -r ${deployRepo} --all --confirm"
-        // String command = "upload hello_a/0.1@user/testing -r ${deployRepo} --all --confirm"
 
         // Run the upload command, with the same build-info instance as an argument:
         conanClient.run(command: command, buildInfo: buildInfo)
